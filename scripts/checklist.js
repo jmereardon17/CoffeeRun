@@ -57,14 +57,15 @@
       value: coffeeOrder.emailAddress
     });
 
-    var description = coffeeOrder.size + ' ';
+    // var description = coffeeOrder.size + ' ';
+    var description = ' [' + coffeeOrder.strength + 'x] ';
+    description += coffeeOrder.size + ' ';
     if (coffeeOrder.flavor) {
       description += coffeeOrder.flavor + ' ';
     }
 
     description += coffeeOrder.coffee + ', ';
     description += ' (' + coffeeOrder.emailAddress + ')';
-    description += ' [' + coffeeOrder.strength + 'x]';
 
     $label.append($checkbox);
     $label.append(description);
