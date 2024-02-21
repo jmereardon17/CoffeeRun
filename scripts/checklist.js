@@ -50,6 +50,12 @@
       class: 'checkbox'
     });
 
+    if (coffeeOrder.strength < 30) {
+      $div.addClass('bg-success');
+    } else if (coffeeOrder.strength < 50) {
+      $div.addClass('bg-warning');
+    } else $div.addClass('bg-danger');
+
     var $label = $('<label></label>');
 
     var $checkbox = $('<input></input>', {
