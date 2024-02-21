@@ -69,13 +69,65 @@
               <label for="strengthLevel">Caffeine Rating</label>
               <input name="strength" id="strengthLevel" type="range" value="30" />
             </div>
+            <div class="form-group power-up hide">
+              <label for="powerUp">Power Up</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="power" value="time-travel" />
+                  Time-travel
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="power" value="mind-reading" />
+                  Mind-reading
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="power" value="bug-free-code" />
+                  Bug-free code
+                </label>
+              </div>
+            </div>
             <button type="submit" class="btn btn-default">Submit</button>
             <button type="reset" class="btn btn-default">Reset</button>
           </form>
         </div>
       </div>
     </section>
+
+    <div class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">Achievement: Coffee-zilla!</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              Congratulations! You've earned the achievement: Coffee-Zilla! For your amazing intensity and
+              commitment to flavor!
+            </p>
+            <p>Would you like to use your achievement?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" charset="UTF-8"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"
+      charset="UTF-8"
+    ></script>
     <script src="scripts/formhandler.js" charset="UTF-8"></script>
     <script src="scripts/datastore.js" charset="UTF-8"></script>
     <script src="scripts/truck.js" charset="UTF-8"></script>

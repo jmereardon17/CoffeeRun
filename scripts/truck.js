@@ -9,6 +9,17 @@
 
   Truck.prototype.createOrder = function (order) {
     this.db.add(order.emailAddress, order);
+    var showAchievement = order.size === 'trenta' && order.strength >= 50 && order.flavor !== '';
+    if (showAchievement) this.showAchievement();
+  };
+
+  Truck.prototype.showAchievement = function () {
+    $('.modal').modal('show');
+    $('.modal .btn-default').on('click', function () {
+      $('#emailInput').on('blur', function () {
+        if (this.value) $('.power-up').removeClass('hide');
+      });
+    });
   };
 
   Truck.prototype.deliverOrder = function (customerId) {
