@@ -63,7 +63,6 @@
       value: coffeeOrder.emailAddress
     });
 
-    // var description = coffeeOrder.size + ' ';
     var description = ' [' + coffeeOrder.strength + 'x] ';
     description += coffeeOrder.size + ' ';
     if (coffeeOrder.flavor) {
