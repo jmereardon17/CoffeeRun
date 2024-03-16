@@ -10,8 +10,10 @@
   var myTruck = new Truck('Galactica', new DataStore());
   window.myTruck = myTruck;
   var checkList = new CheckList(CHECKLIST_SELECTOR);
+  window.checkList = checkList;
   checkList.addClickHandler(myTruck.deliverOrder.bind(myTruck));
   var formHandler = new FormHandler(FORM_SELECTOR);
+  window.formHandler = formHandler;
   var slider = $('#strengthLevel');
   var sliderLabel = slider.prev();
   var text = sliderLabel.text();
@@ -27,8 +29,13 @@
   });
 
   formHandler.addSubmitHandler(function (data) {
-    myTruck.createOrder(data);
-    checkList.addRow(data);
+    var existingOrder = myTruck.getOrder(data.emailAddress);
+    if (existingOrder) {
+      checkList.editRow(data);
+    } else {
+      myTruck.createOrder(data);
+      checkList.addRow(data);
+    }
   });
   console.log(formHandler);
 })(window);

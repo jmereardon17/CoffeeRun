@@ -14,6 +14,17 @@
     }
   }
 
+  FormHandler.prototype.reloadData = function (data) {
+    this.$formElement.each(function () {
+      $(this.elements).each(function (i, el) {
+        if (data[el.name]) {
+          if (el.type !== 'radio') el.value = data[el.name];
+          else el.checked = el.value === data[el.name];
+        }
+      });
+    });
+  };
+
   FormHandler.prototype.addSubmitHandler = function (fn) {
     this.$formElement.on('submit', function (event) {
       event.preventDefault();

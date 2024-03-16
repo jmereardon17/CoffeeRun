@@ -16,15 +16,29 @@
   }
 
   CheckList.prototype.addClickHandler = function (fn) {
+    var isSingleClick = true;
     this.$element.on(
       'click',
       'input',
       function (event) {
-        var email = event.target.value;
-        this.removeRow(email);
-        fn(email);
+        isSingleClick = true;
+        setTimeout(() => {
+          if (isSingleClick) {
+            $(event.target).parent().parent().css({ background: 'gray', color: 'white' });
+            window.setTimeout(function () {
+              console.log('deliver order');
+              myTruck.deliverOrder(event.target.value);
+              checkList.removeRow(event.target.value);
+            }, 3000);
+          }
+        }, 250);
       }.bind(this)
     );
+
+    this.$element.on('dblclick', function (event) {
+      isSingleClick = false;
+      formHandler.reloadData(myTruck.getOrder(event.target.value));
+    });
   };
 
   CheckList.prototype.addRow = function (coffeeOrder) {
@@ -32,7 +46,6 @@
     this.removeRow(coffeeOrder.emailAddress);
     // Create a new instance of a row, using the coffee order info
     var rowElement = new Row(coffeeOrder);
-
     // Add the new row instance's $element property to the checklist
     this.$element.append(rowElement.$element);
   };
@@ -42,6 +55,24 @@
       .find('[value="' + email + '"]')
       .closest('[data-coffee-order="checkbox"')
       .remove();
+  };
+
+  CheckList.prototype.editRow = function (data) {
+    var description = ' [' + data.strength + 'x] ';
+    description += data.size + ' ';
+
+    if (data.flavor) {
+      description += data.flavor + ' ';
+    }
+
+    description += data.coffee + ', ';
+    description += ' (' + data.emailAddress + ')';
+
+    this.$element
+      .find('[value="' + data.emailAddress + '"]')
+      .closest('label')
+      .contents()
+      .last()[0].textContent = description;
   };
 
   function Row(coffeeOrder) {
